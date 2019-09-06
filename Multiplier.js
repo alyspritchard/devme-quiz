@@ -1,6 +1,6 @@
 import React from 'react';
 
-let Header = ({ x, y }) => (
+let Multiplier = ({ x, y }) => (
 	<div className="card">
 		<p className="card-body">
 			{ x * y }
@@ -8,5 +8,4 @@ let Header = ({ x, y }) => (
 	</div>
 ); 
 
-
-export default Header;
+export default Multiplier;

@@ -26,7 +26,7 @@ class HideMe extends Component {
 		return (
 			<div className="card">
 				<p className="card-body">
-				{ hidden ? "" : children }
+				{ hidden ? null : children }
 				</p>
 				<button onClick={ this.handleClick } className="btn btn-warning">Clicker</button>
 			</div>

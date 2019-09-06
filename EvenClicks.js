@@ -6,7 +6,6 @@ class EvenClicks extends Component {
 		super(props);
 		
 		this.state = {
-			clicks: 0,
 			even: true,
 		};
 
@@ -14,11 +13,8 @@ class EvenClicks extends Component {
 	}
 
 	handleClick() {
-		let current = this.state.clicks;
-
 		this.setState({
-			clicks: current + 1,
-			even: current % 2 === 0,
+			even: !this.state.even,
 		});
 
 	}

@@ -23,13 +23,12 @@ class CountBy extends Component {
 	}
 
 	render() {
-		let { step } = this.props;
 		let { count } = this.state;
 		
 		return (
 			<div className="card">
 				<p className="card-body">
-				{ count }
+					{ count }
 				</p>
 				<button onClick={ this.handleClick } className="btn btn-danger">Clicker</button>
 			</div>
