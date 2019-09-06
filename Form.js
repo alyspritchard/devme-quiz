@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Field from './Field';
 
 class Form extends Component {
 
@@ -9,7 +10,7 @@ class Form extends Component {
 			title: "",
 			text: "",
 			valid: false,
-			posts: [],
+			submitted: false,
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,16 +21,26 @@ class Form extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		let { title, text } = this.state;
+		let { title, text, valid, submitted } = this.state;
 		let post = {
 			title: title, 
 			text: text,
 		};
 
 		this.setState({
+			submitted: true,
 			valid: title !== "" && text !== "",
-			posts: valid ? [...this.state.posts, post] : [...this.state.posts],
-		});		
+		});	
+
+		if (submitted && valid) {
+			this.props.addPost(post);
+			this.setState({
+				title: "",
+				text: "",
+				submitted: false,
+				valid: false,
+			});
+		}	
 	}
 
 	handleChange(e, name) {
@@ -39,23 +50,23 @@ class Form extends Component {
 	}
 
 	render() {
-		let { title, text, } = this.state;
+		let { title, text, submitted } = this.state;
 
 		return (
 			<>
 				<h2>Add Post</h2>
 				<form onSubmit={ this.handleSubmit } className="form-group">
-					<label>Title</label>
-					<input
+					<Field 
 						value={ title }
-						className="form-control"
-						onChange={ (e) => this.handleChange(e, "title") }
+						label="Title"
+						valid={ !submitted || title !== "" }
+						handleChange={ (e) => this.handleChange(e, "title") }
 					/>
-					<label>Text</label>
-					<input
+					<Field 
 						value={ text }
-						className="form-control"
-						onChange={ (e) => this.handleChange(e, "text") }
+						label="Text"
+						valid={ !submitted || text !== "" }
+						handleChange={ (e) => this.handleChange(e, "text") }
 					/>
 					<button type="submit" className="btn btn-primary">Submit</button>
 				</form>

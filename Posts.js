@@ -9,22 +9,33 @@ class Posts extends Component {
 		this.state = { 
 			posts: [],
 		};
+
+		this.addPost = this.addPost.bind(this);
+	}
+
+	addPost(post) {
+		this.setState({
+			posts: [...this.state.posts, post],
+		});
 	}
 
 	render() {
 		let { posts } = this.state;
 
-		return !loaded ? <p>Loading...</p> : (
+		return (
 			<>
-				<h1>Posts</h1>
-				<ul className="list-group">
-					{ posts.map(post => (
-						<li key={ post.id } className="list-group-item">
-							<Link to={ `posts/${post.id}` }>{ post.title}</Link>
-							<Tags tags={ post.tags }/>
-						</li>
-					)) }
-				</ul>
+				<h2>Posts</h2>
+				{ posts.length === 0 ? <h4>No posts</h4> :
+					posts.map((post, index) => (
+						<div key={ index }className="card">
+							<h4>{ post.title }</h4>
+							<p>{ post.text }</p>
+						</div>
+					))
+				}
+				<Form 
+					addPost={ (post) => this.addPost(post) }
+				/>
 			</>
 		);
 	}
