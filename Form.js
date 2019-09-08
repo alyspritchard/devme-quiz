@@ -36,7 +36,6 @@ class Form extends Component {
 				title: "",
 				text: "",
 				submitted: false,
-				valid: false,
 			});
 		}	
 	}

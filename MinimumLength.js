@@ -16,7 +16,6 @@ class MinimumLength extends Component {
 		this.setState({
 			value: e.currentTarget.value,
 		});
-
 	}
 
 	render() {
