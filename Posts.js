@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Post from './Post';
 import Form from './Form';
 
 class Posts extends Component {
@@ -25,17 +26,14 @@ class Posts extends Component {
 		return (
 			<>
 				<h2>Posts</h2>
+
 				{ posts.length === 0 ? <h4>No posts</h4> :
 					posts.map((post, index) => (
-						<div key={ index }className="card">
-							<h4>{ post.title }</h4>
-							<p>{ post.text }</p>
-						</div>
+						<Post post={ post } index={ index } />
 					))
 				}
-				<Form 
-					addPost={ (post) => this.addPost(post) }
-				/>
+				
+				<Form addPost={ (post) => this.addPost(post) } />
 			</>
 		);
 	}

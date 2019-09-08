@@ -9,19 +9,17 @@ class Form extends Component {
 		this.state = { 
 			title: "",
 			text: "",
-			valid: false,
 			submitted: false,
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-
 	}
 
 	handleSubmit(e) {
 		e.preventDefault();
 
-		let { title, text, valid, submitted } = this.state;
+		let { title, text } = this.state;
 		let post = {
 			title: title, 
 			text: text,
@@ -29,10 +27,10 @@ class Form extends Component {
 
 		this.setState({
 			submitted: true,
-			valid: title !== "" && text !== "",
 		});	
 
-		if (submitted && valid) {
+		// if submission is valid, data is sent up to Posts, and form is reset
+		if (title !== "" && text !== "") {
 			this.props.addPost(post);
 			this.setState({
 				title: "",
